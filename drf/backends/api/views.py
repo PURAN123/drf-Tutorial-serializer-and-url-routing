@@ -5,15 +5,25 @@ from django.forms.models import model_to_dict
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from products.models import Products
+from products.models import Product
+from products.serializers import ProductSerializer
+
+
+
+@api_view(["GET"])
+def all_products(request):
+  queryset = Product.objects.all()
+  serializer = ProductSerializer(queryset, many= True)
+  return Response(serializer.data)  
 
 
 @api_view(["GET"])
 def home_page(request, *args, **kwargs):
-    model_data = Products.objects.all().order_by("?").first()
+    model_data = Product.objects.all().order_by("?").first()
     data = {}
     if model_data:
-        data = model_to_dict(model_data, fields=('id',"title", "price", "sale_price"))
+        # data = ProductSerializer(model_data).data
+        data = model_to_dict(model_data, fields=[ "id", "title",  "sale_price" ])
         # json_data = dict(data)
         # json_data = json.dumps(data)
         # data['title'] = model_data.title

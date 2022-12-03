@@ -39,6 +39,7 @@ class ProductDetailView(generics.RetrieveAPIView):
   queryset = Product.objects.all()
   serializer_class = ProductSerializer
   permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.SessionAuthentication,TokenAuth)
 product_details_view = ProductDetailView.as_view()
 
 
@@ -63,4 +64,13 @@ class ProductDeleteView(generics.DestroyAPIView, generics.RetrieveAPIView):
   queryset = Product.objects.all()
   serializer_class = ProductSerializer
   permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.SessionAuthentication,TokenAuth)
+
+  def get_queryset(self):
+    qs = super().get_queryset()
+    if(self.request.user.is_superuser):
+      return qs
+    elif self.request.user.is_authenticated:
+      return qs.filter(user = self.request.user)
+
 product_delete_view = ProductDeleteView.as_view()

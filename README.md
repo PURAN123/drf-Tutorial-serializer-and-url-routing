@@ -1,12 +1,12 @@
-# Django Rest Framework with extra functionality 
-
-# Add serializable validators as well as seperate validators
-
-# Working with urls routing reverse
+# Django Rest Framework
 
 # Token Authentications
 
-# Query set modifications
+# Serializable validators as well as seperate validators classes
+
+# Working with urls routing reverse
+
+# Get Query set according to user profile
 
 # Django REST Framework with JWT(Json Web Token) authentication
  

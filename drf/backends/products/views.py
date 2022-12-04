@@ -10,8 +10,8 @@ from api.authentication import TokenAuth
 class ProductListView(generics.ListCreateAPIView):
   queryset = Product.objects.all()
   serializer_class = ProductSerializer
-  permission_classes = (permissions.IsAuthenticated,)
-  authentication_classes = (authentication.SessionAuthentication,TokenAuth)
+  # permission_classes = (permissions.IsAuthenticated,)
+  # authentication_classes = (authentication.SessionAuthentication,TokenAuth)
   filter_backends = [DjangoFilterBackend,filters.SearchFilter]
   filterset_fields = ['title', 'id']
   search_fields= ['title', "id"]

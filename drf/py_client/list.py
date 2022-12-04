@@ -15,7 +15,7 @@ token_resp = requests.post(get_token, json=creds)
 if token_resp.status_code == 200:
   token = token_resp.json().get("token")
   headers =   {
-    "Authorization": f"Bearer {token}",
+    "Authorization": f"Token {token}",
   }
   endpoint = "http://127.0.0.1:8000/products/"
   response = requests.get(endpoint, headers= headers);

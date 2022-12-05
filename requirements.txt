@@ -4,3 +4,4 @@ djangorestframework-simplejwt
 requests
 pyyaml
 django-cors-headers
+django_filterspip 
